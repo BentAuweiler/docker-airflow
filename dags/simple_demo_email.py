@@ -12,7 +12,7 @@ default_args = {
         'start_date':datetime(2020,8,11),
 }
 
-dag = DAG('hello_world',
+dag = DAG('simple_demo_mail',
           description='Simple tutorial DAG',
           schedule_interval='* * * * *',
           default_args = default_args,
