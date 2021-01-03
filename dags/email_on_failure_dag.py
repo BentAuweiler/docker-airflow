@@ -38,7 +38,7 @@ with DAG(
             execution_timeout=max_execution_time,
             provide_context=True,
             email_on_failure=True,
-            email='bent.auweiler@bayard-consulting.com',
+            email=['bent.auweiler@bayard-consulting.com'],
             python_callable=print_context,
             dag=dag
         )
