@@ -6,4 +6,4 @@ kill:
 	docker-compose -f docker-compose-LocalExecutor.yml down
 
 build:
-	docker build --rm -t puckel/docker-airflow .
+	docker build --rm -t auweiler/airflow-demo .
