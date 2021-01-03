@@ -12,9 +12,9 @@ default_args = {
         'start_date':datetime(2020,8,11),
 }
 
-dag = DAG('simple_demo_mail',
+dag = DAG('simple_demo_mail_dag',
           description='Simple tutorial DAG',
-          schedule_interval='* * * * *',
+          schedule_interval='@once',
           default_args = default_args,
           catchup=False,
           max_active_runs=1)
@@ -26,7 +26,7 @@ hello_operator = PythonOperator(task_id='hello_task', python_callable=print_hell
 email = EmailOperator(
         task_id='send_email',
         to='bent.auweiler@bayard-consulting.com',
-        subject='Airflow Alert',
+        subject='Airflow Demo Alert',
         html_content=""" <h3>Email Test</h3> """,
         dag=dag
 )
