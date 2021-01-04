@@ -17,8 +17,8 @@ args = {
     # 'end_date': datetime(2016, 1, 1),
     # 'wait_for_downstream': False,
     # 'dag': dag,
-    'sla': timedelta(seconds=5),
-    # 'execution_timeout': timedelta(seconds=300),
+    # 'sla': timedelta(seconds=5),
+    'execution_timeout': timedelta(seconds=5),
     # 'on_failure_callback': some_function,
     # 'on_success_callback': some_other_function,
     # 'on_retry_callback': another_function,
@@ -26,7 +26,7 @@ args = {
     # 'trigger_rule': 'all_success'
 }
 
-dag = DAG('email_on_sla_miss_dag',
+dag = DAG('email_on_execution_timeout_dag',
           default_args=args,
           max_active_runs=1,
           schedule_interval="@once")
@@ -34,6 +34,7 @@ dag = DAG('email_on_sla_miss_dag',
 t1 = BashOperator(
     task_id='timeout',
     sla=timedelta(seconds=5),
+    execution_timeout=timedelta(seconds=5),
     bash_command='sleep 10',
     retries=0,
     dag=dag,
