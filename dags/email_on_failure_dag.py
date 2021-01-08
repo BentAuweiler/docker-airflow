@@ -33,7 +33,7 @@ with DAG(
     description='Demo dag to throw an error on execution and send an email',
     default_args=default_arguments) as dag:
 
-        fetch_items_task = PythonOperator(
+        demo_failure_task = PythonOperator(
             task_id='print_the_context',
             execution_timeout=max_execution_time,
             provide_context=True,
@@ -42,6 +42,8 @@ with DAG(
             python_callable=print_context,
             dag=dag
         )
+
+        demo_failure_task.doc_md = """This task demonstrates the sending of an email if an exception occurs during the execution"""
 
 
 

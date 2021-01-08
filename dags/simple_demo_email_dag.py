@@ -19,6 +19,8 @@ dag = DAG('simple_demo_mail_dag',
           catchup=False,
           max_active_runs=1)
 
+dag.doc_md = """This workflow shows the simple concatination of 3 different tasks using three different operators"""
+
 dummy_operator = DummyOperator(task_id='dummy_task', retries=3, dag=dag)
 
 hello_operator = PythonOperator(task_id='hello_task', python_callable=print_hello, dag=dag)
@@ -30,5 +32,7 @@ email = EmailOperator(
         html_content=""" <h3>Email Test</h3> """,
         dag=dag
 )
+
+email.doc_md = """This task implements a very simple custom email template to illustrate the sending of custom emails"""
 
 email >> dummy_operator >> hello_operator

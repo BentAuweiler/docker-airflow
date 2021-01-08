@@ -31,6 +31,9 @@ dag = DAG('email_on_sla_miss_dag',
           max_active_runs=1,
           schedule_interval="@once")
 
+
+dag.doc_md = """This workflow shows the creation of an email if an the execution time is longer than the specified SLA timeout"""
+
 t1 = BashOperator(
     task_id='timeout',
     sla=timedelta(seconds=5),
@@ -38,3 +41,5 @@ t1 = BashOperator(
     retries=0,
     dag=dag,
 )
+
+email.doc_md = """This task implements a very simple custom email template to illustrate the sending of custom emails"""

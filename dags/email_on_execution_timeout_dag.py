@@ -39,3 +39,5 @@ t1 = BashOperator(
     retries=0,
     dag=dag,
 )
+
+t1.doc_md = """This task demonstrates the sending of an email if an execution timeout is set and reached during the execution"""

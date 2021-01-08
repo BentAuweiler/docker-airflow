@@ -32,10 +32,12 @@ with DAG(
     description='Demo Dag to learn the basics of airflow',
     default_args=default_arguments) as dag:
 
-        fetch_items_task = PythonOperator(
+        demo_task = PythonOperator(
             task_id='print_the_context',
             execution_timeout=max_execution_time,
             provide_context=True,
             python_callable=print_context,
             dag=dag
         )
+
+        demo_task.doc_md = """This task demonstrates the most basic python operator"""
